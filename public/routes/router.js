@@ -15,7 +15,9 @@ router.post( '/', function( request, response){
     var number = Number(request.body.points);
     var buzzwordObject = { 'buzzWord' : request.body.buzzWord,
                            'points' : number,
-                           'heard' : true };
+                           'heard' : false };
+
+
 
     if(buzzWordArray.length === 0){
       buzzWordArray.push(buzzwordObject);
@@ -24,25 +26,36 @@ router.post( '/', function( request, response){
       response.json({'sucess':true});
       response.end();
     } else {
-    for(var i = 0 ; i < buzzWordArray.length ; i++){
+      console.log(buzzWordArray.indexOf(buzzwordObject));
 
-      if(buzzWordArray[i].buzzWord !== request.body.buzzWord){
-        buzzWordArray.push(buzzwordObject);
-        total +=  buzzwordObject.points;
-        console.log(buzzWordArray);
-        console.log(total);
-        //console.log(buzzWordArray);
-        response.json({'sucess':true});
 
-        return response.end();
-      } else {
-        console.log('fail');
-        console.log(buzzWordArray);
-        response.json({'success': false});
-        response.end();
-      }
+
+
+
+
+
+
+
+      hstjdytkfuylgiu;hoptfbdfygi;y86p45ut98
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      response.end();
     }
-  }
 
   } else {
     console.log('fail');
@@ -50,13 +63,36 @@ router.post( '/', function( request, response){
     response.json({'success': false});
     response.end();
   }
-
-
-
 });
 
 router.put( '/', function( request, response){
+  if(request.body.buzzWord !== undefined && (request.body.heard === 'true' || request.body.heard === 'false')){
+    console.log('11111111111111111111');
 
+    for(var j = 0 ; j < buzzWordArray.length ; j++){
+      if(buzzWordArray[j].buzzWord === request.body.buzzWord ){
+        console.log('222222222222222222');
+
+
+
+      } else {
+        console.log('malamapono');
+
+
+      }
+    }
+
+
+
+
+
+
+
+  } else {
+    console.log('ahuihou');
+    response.json({'success': false});
+    response.end();
+  }
 });
 
 
