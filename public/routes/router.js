@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var buzzWordArray = [];
+var buzzWordArray = [{'buzzWord':'kai', 'points':3, 'heard':'true'}];
 var checker = true;
 var total = 0;
 
@@ -95,7 +95,28 @@ router.put( '/', function( request, response){
   response.end();
 });
 
+router.delete( '/', function( request, response){
+  if(request.body.buzzWord !== undefined){
+  checker =false;
 
+  for(var p = 0 ; p < buzzWordArray.length ; p++){
+    if(buzzWordArray[p].buzzWord === request.body.buzzWord){
+      buzzWordArray.splice(p,1);
+      response.json({'success': true});
+      response.end();
+    }
+  }
+
+  console.log(buzzWordArray+ ' this is the array');
+  response.end();
+  } else{
+    console.log('fail');
+    console.log('needs a buzzWord in the body');
+    response.json({'success': false});
+    response.end();
+  }
+
+});
 
 
 
