@@ -8,6 +8,7 @@ var router = require('./public/routes/router.js');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use('/buzzwords/', router);
+app.use('/reset', router);
 
 app.get('/', function( request, response){
   request.send('Hello World!');

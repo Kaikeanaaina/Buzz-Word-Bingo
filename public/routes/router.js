@@ -43,7 +43,18 @@ router.post( '/', function( request, response){
 
     //response.end();
 
-  } else {
+  }
+
+  else if(request.body.reset === 'true'){
+    console.log('win!');
+    buzzWordArray = [];
+    total = 0;
+    response.json({'success':true});
+    response.end();
+  }
+
+
+  else {
     console.log('fail');
     console.log(buzzWordArray);
     response.json({'success': false});
@@ -115,17 +126,7 @@ router.delete( '/', function( request, response){
     response.json({'success': false});
     response.end();
   }
-
 });
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router;
