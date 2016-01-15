@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var buzzWordArray = [];
+var buzzWordBuzzWord = [];
+var checker = true;
 var total = 0;
+
 
 
 router.get('/', function(request, response){
@@ -10,52 +13,35 @@ router.get('/', function(request, response){
 });
 
 router.post( '/', function( request, response){
+  checker = true;
   //if statement, if there is no duplicate word
   if(request.body.buzzWord !== undefined && request.body.points !== undefined){
     var number = Number(request.body.points);
-    var buzzwordObject = { 'buzzWord' : request.body.buzzWord,
+    var buzzWordObject = { 'buzzWord' : request.body.buzzWord,
                            'points' : number,
                            'heard' : false };
-
-
-
     if(buzzWordArray.length === 0){
-      buzzWordArray.push(buzzwordObject);
-      total +=  buzzwordObject.points;
-      console.log(buzzWordArray);
-      response.json({'sucess':true});
-      response.end();
+      buzzWordArray.push(buzzWordObject);
+      console.log('hi');
+      //buzzWordArray[0].heard = true;
+    }
+
+    for(var j = 0 ; j < buzzWordArray.length ; j++){
+      if(buzzWordArray[j].buzzWord === request.body.buzzWord){
+        checker=false;
+      }
+    }
+
+    if(checker === true){
+      buzzWordArray.push(buzzWordObject);
+      total += buzzWordObject.points;
+      response.json({'success': true});
     } else {
-      console.log(buzzWordArray.indexOf(buzzwordObject));
-
-
-
-
-
-
-
-
-
-      hstjdytkfuylgiu;hoptfbdfygi;y86p45ut98
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      response.json({'success': false});
       response.end();
     }
+
+    //response.end();
 
   } else {
     console.log('fail');
@@ -63,6 +49,8 @@ router.post( '/', function( request, response){
     response.json({'success': false});
     response.end();
   }
+
+  response.end();
 });
 
 router.put( '/', function( request, response){
